@@ -1,0 +1,61 @@
+{
+  "_source": {
+    "includes": [
+        "acct_id",
+        "sid",
+        "date_added",
+        "speech.in",
+        "speech.out"
+    ]
+  },
+  "query": {
+    "bool": {
+      "must": [
+        [
+          {
+            "bool": {
+                "_name": "Caller-Found",
+                "should": [
+                    {
+                        "bool": {
+                            "must": [
+                                {
+                                    "regexp":{
+                                        "speech.in": {
+                                            "value": "([zZ]ero |[tT]wo |[tT]hree|[fF]our |[fF]ive |[sS]ix |[sS]even |[eE]ight |[nN]ine |[tT]en |[eE]leven |[tT]welve |[tT]hirteen |[fF]ourteen |[fF]ifteen |[sS]ixteen |[sS]eventeen |[eE]ighteen |[nN]ineteen |[tT]wenty |[tT]hirty |[fF]ourty |[fF]ifty |[sS]ixty |[sS]eventy |[eE]ighty |[nN]inety |[hH]undred |[tT]housand ){5,}",
+                                            "flags" : "ALL"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+          },
+          {
+            "bool": {
+              "_name": "Agent-Found",
+              "should": [
+                {
+                  "bool": {
+                    "must": [
+                      {
+                        "regexp":{
+                            "speech.out": {
+                                "value": "([zZ]ero |[tT]wo |[tT]hree|[fF]our |[fF]ive |[sS]ix |[sS]even |[eE]ight |[nN]ine |[tT]en |[eE]leven |[tT]welve |[tT]hirteen |[fF]ourteen |[fF]ifteen |[sS]ixteen |[sS]eventeen |[eE]ighteen |[nN]ineteen |[tT]wenty |[tT]hirty |[fF]ourty |[fF]ifty |[sS]ixty |[sS]eventy |[eE]ighty |[nN]inety |[hH]undred |[tT]housand ){5,}",
+                                "flags" : "ALL"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      ]
+    }
+  }
+}
